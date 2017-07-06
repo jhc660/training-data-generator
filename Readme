@@ -1,0 +1,13 @@
+These libraries are mandatory to run the generator script:
+
+pyqrcode
+cv2
+numpy
+
+To run the generator script, place it in the same directory (or within a subdirectory of the script directory) 
+as a number of images that will serve as the background images. These images are preferably photos of realistic 
+and/or common environments.
+
+Then, simply run the generator script to add randomized QR codes to each image, this composite image is saved 
+seperately as original_image_name.png. The region of the QR code in the new image is saved as either a CSV or
+json file.
