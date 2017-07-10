@@ -14,7 +14,7 @@ import json
 #Tweakable Variables
 log_type = "JSON"
 size = 100
-fuzz_ratio = 7
+fuzz_ratio = 3
 random_displacement_ratio = 2
 final_size = (640,480)
 
