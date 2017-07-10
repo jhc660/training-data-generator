@@ -99,9 +99,9 @@ def generate_image(name, log):
     cv2.imwrite(name+".png", blendedImage)
 
     #Log the location of the QR code for each image.
-    if log_type == "CSV":
-        write_CSV(log, name, pts2[0], pts2[1], pts2[2], pts2[3])
-    elif log_type == "JSON":
+    #if log_type == "CSV":
+    #    write_CSV(log, name, pts2[0], pts2[1], pts2[2], pts2[3])
+    if log_type == "JSON":
         write_JSON_TensorBox(log, name, pts2[0], pts2[1], pts2[2], pts2[3], cols, rows)
 
 #Combine two images. Note: This is a simplified algorithm that assumes the baseImage is fully opaque and the addImage has binary alphas.
@@ -126,7 +126,8 @@ def write_JSON_TensorBox(log_name, file_name, point1, point2, point3, point4, ma
     x2 = max(point1[0],point2[0],point3[0],point4[0])
     y1 = min(point1[1],point2[1],point3[1],point4[1])
     y2 = max(point1[1],point2[1],point3[1],point4[1])
-    enforce boundary values
+
+    #enforce boundary values
     if x1<0:
         x1 = 0
     if x1>(max_x-1):
@@ -149,6 +150,8 @@ def write_JSON_TensorBox(log_name, file_name, point1, point2, point3, point4, ma
     
     if (x1!=x2) and (y1!=y2):
         log_name.write(json.dumps({"image_path":file_name+".png", "rects":({"x1":int(x1), "x2":int(x2), "y1":int(y1), "y2":int(y2)},)}, indent = 2))
+    else:
+        log_name.write(json.dumps({"image_path":file_name+".png", "rects":()}, indent = 2))
 
 if __name__ == "__main__":
     main()
